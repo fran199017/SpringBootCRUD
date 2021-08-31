@@ -7,5 +7,7 @@ import com.fran.app.models.entities.Cliente;
 public interface IClienteDAO {
 
 	public List<Cliente> findAll();
+	
+	public void guardarClientes(Cliente cliente);
 		
 }

@@ -13,15 +13,29 @@ import com.fran.app.models.entities.Cliente;
 @Repository
 public class ClienteDAOImpl implements IClienteDAO {
 
+	
+	//Atributos
 	@PersistenceContext
 	private EntityManager em;
 	
+	
+	
+	//Methods
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional(readOnly=true)
 	public List<Cliente> findAll() {
 		// TODO Auto-generated method stub
 		return em.createQuery("from Cliente").getResultList();
+	}
+
+	
+	@Override
+	@Transactional
+	public void guardarClientes(Cliente cliente) {
+		
+		em.persist(cliente);
+		
 	}
 
 }

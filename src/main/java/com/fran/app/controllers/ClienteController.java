@@ -2,9 +2,12 @@ package com.fran.app.controllers;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,14 +31,21 @@ public class ClienteController {
 	public String insertarClientes(Map<String, Object> model) {
 		Cliente cliente= new Cliente();
 		model.put("cliente", cliente);
-		model.put("titulo", "Formulario de Clientes");
+		model.put("titulo", "Formulario de Cliente");
 		
 		return "formulario";
 	}
 	
 	 @RequestMapping(value="/form", method=RequestMethod.POST)
-	 public String guardar(Cliente cliente) {
+	 public String guardar(@Valid Cliente cliente, BindingResult result, Model model) {
+		 if(result.hasErrors()) {
+			 model.addAttribute("titulo", "Formulario de Cliente");
+			 return "formulario";			 
+		 }	 
+		 
 		 clienteDao.guardarClientes(cliente);
-		 return "redirect:listar";
+		 return "redirect:listar"; 
+		 	
+		
 	 }
 }

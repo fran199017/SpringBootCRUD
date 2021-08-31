@@ -2,7 +2,6 @@ package com.fran.app.models.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +11,10 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "clientes")
@@ -19,16 +22,28 @@ public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	
+	//Atributos
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@NotEmpty
+	@Size(min=3, max=25)
 	private String nombre;
+	
+	@NotEmpty
 	private String apellido;
+	
+	@NotEmpty
+	@Email
 	private String email;
 
 	@Column(name = "create_at")
 	@Temporal(TemporalType.DATE)
 	private Date createAt;
+	
+	//Setters y getters
 
 	public Long getId() {
 		return id;
@@ -70,6 +85,8 @@ public class Cliente implements Serializable {
 		this.createAt = createAt;
 	}
 	
+	
+	//Metodo para que antes de realizar la persistencia, llame a este metodo.
 	@PrePersist
 	public void prePersist() {
 		createAt=new Date();

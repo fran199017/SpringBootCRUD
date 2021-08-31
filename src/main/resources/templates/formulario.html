@@ -25,37 +25,55 @@
 				</a></li>
 				<li class="nav-item"><a class="nav-link" th:href="@{/listar}">Clientes</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" th:href="@{/form}">Insertar Clientes</a>
-				</li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/form}">Insertar
+						Clientes</a></li>
 
 			</ul>
 		</div>
 	</nav>
 
-	
 
-	<div class="container">
+
+	<div class="container-fluid">
 		<h1 th:text="${titulo}" class="text-primary"></h1>
-		 
+
 		<form th:action="@{/form}" th:object="${cliente}" method="post">
 
-			<div class="form-group">
-				<label for="nombre">Nombre</label> <input class="form-control"
-					type="text" th:field="*{nombre}" />
-			</div>
-			
-			<div class="form-group">
-				<label for="apellido">Apellido</label> <input class="form-control"
-					type="text" th:field="*{apellido}" />
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label" for="nombre">Nombre</label>
+
+				<div class="col-sm-6">
+					<input  class="form-control" type="text"
+						th:field="*{nombre}" th:errorclass="'form-control alert-danger'" />
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+				</div>
 			</div>
 
-			<div class="form-group">
-				<label for="email">Email</label> <input class="form-control"
-					type="email" th:field="*{email}" />
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label" for="apellido">Apellido</label>
+
+				<div class="col-sm-6">
+					<input class="form-control" type="text"
+						th:field="*{apellido}" th:errorclass="'form-control alert-danger'" />
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></small>
+				</div>
 			</div>
-			
-			<input class="btn btn-primary" type="submit" value="Crear Cliente" /> 
-			
+
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label" for="email">Email</label>
+
+				<div class="col-sm-6">
+					<input class="form-control" type="email"
+						th:field="*{email}" th:errorclass="'form-control alert-danger'" />
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+				</div>
+			</div>
+
+			<input class="btn btn-primary" type="submit" value="Crear Cliente" />
+
 			<input class="form-control" type="hidden" th:field="*{id}" />
 		</form>
 	</div>

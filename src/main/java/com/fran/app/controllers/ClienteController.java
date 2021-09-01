@@ -46,7 +46,7 @@ public class ClienteController {
 			 return "formulario";			 
 		 }	 
 		 
-		 clienteService.guardarClientes(cliente);
+		 clienteService.save(cliente);
 		 status.setComplete();
 		 return "redirect:listar"; 		 		
 	 }

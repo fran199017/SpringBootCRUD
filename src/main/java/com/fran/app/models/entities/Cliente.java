@@ -21,7 +21,6 @@ import javax.validation.constraints.Size;
 public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
 	
 	//Atributos
 	@Id

@@ -1,9 +1,10 @@
 package com.fran.app.models.dao;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+
 import com.fran.app.models.entities.Cliente;
 
 
-public interface IClienteDAO extends CrudRepository<Cliente, Long> {
+public interface IClienteDAO extends PagingAndSortingRepository<Cliente, Long> {
 		
 }

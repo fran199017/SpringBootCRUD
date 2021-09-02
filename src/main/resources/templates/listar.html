@@ -12,6 +12,8 @@
 </head>
 <body>
 	<header th:replace="layout/layout :: header"></header>	
+	
+	
 	<div class="container">
 		<h1 th:text="${titulo}" class="text-primary"></h1>
 
@@ -42,8 +44,9 @@
 
 			</tbody>
 		</table>
+		</div>
 		<footer th:replace="layout/layout :: footer"></footer>
-	</div>
+	
 
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

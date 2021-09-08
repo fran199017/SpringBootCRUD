@@ -42,6 +42,8 @@ public class Cliente implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date createAt;
 	
+	private String foto;
+	
 	//Setters y getters
 
 	public Long getId() {
@@ -85,6 +87,15 @@ public class Cliente implements Serializable {
 	}
 	
 	
+	
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
 	//Metodo para que antes de realizar la persistencia, llame a este metodo.
 	@PrePersist
 	public void prePersist() {

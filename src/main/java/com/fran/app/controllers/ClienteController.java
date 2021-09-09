@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -82,15 +83,15 @@ public class ClienteController {
 		 }	 
 		 
 		 if(!foto.isEmpty()) {
-			 Path directorioRecursos= Paths.get("src//main//resources//static//uploads");
-			 String rootPath= directorioRecursos.toFile().getAbsolutePath();
+			 String uniqueFilename= UUID.randomUUID().toString() + "_" + foto.getOriginalFilename();
+			 Path rootPath= Paths.get("uploads").resolve(uniqueFilename);
+			 
+			 Path rootAbsolutPath= rootPath.toAbsolutePath();
 			 try {
-				byte[] bytes=foto.getBytes();
-				Path rutaCompleta= Paths.get(rootPath+ "//" + foto.getOriginalFilename());
-				Files.write(rutaCompleta, bytes);
+				Files.copy(foto.getInputStream(), rootAbsolutPath);
 				flash.addFlashAttribute("info", "Has subido correctamente la foto");
 				
-				cliente.setFoto(foto.getOriginalFilename());
+				cliente.setFoto(uniqueFilename);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

@@ -1,5 +1,6 @@
 package com.fran.app.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -83,6 +84,7 @@ public class ClienteController {
 		 }	 
 		 
 		 if(!foto.isEmpty()) {
+			 
 			 String uniqueFilename= UUID.randomUUID().toString() + "_" + foto.getOriginalFilename();
 			 Path rootPath= Paths.get("uploads").resolve(uniqueFilename);
 			 
@@ -128,10 +130,22 @@ public class ClienteController {
 	 @RequestMapping(value="/eliminar/{id}")
 	 public String eliminar(@PathVariable(value="id") Long id,  RedirectAttributes flash) {
 		 
-		 if(id>0) { 
+		 if(id>0) {
+			 Cliente cliente= clienteService.findOne(id);
 			 clienteService.delete(id);
 			 flash.addFlashAttribute("success", "Cliente eliminado con exito");
-			 } 
+		
+			 Path rootPath= Paths.get("uploads").resolve(cliente.getFoto()).toAbsolutePath();
+			 File archivo= rootPath.toFile();
+			 
+			 if(archivo.exists() && archivo.canRead()) { 
+				 if(archivo.delete()) {
+					 flash.addFlashAttribute("info", "Foto eliminada con exito!");
+				 }
+					 
+			 }
+		 }
+		 
 		 
 		 	
 		 return "redirect:/listar";

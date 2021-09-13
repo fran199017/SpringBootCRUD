@@ -10,6 +10,10 @@
 			<div class="card-header" th:text="${titulo}"></div>
 			<div class="card-body">
 			
+			<h4 class="card-title">
+				<a class="btn btn-light btn-xs" th:text="'&laquo; volver'" th:href="@{'/ver/' + ${factura.cliente.id}}"></a>
+			</h4>
+			
 
 				<form th:action="@{/factura/form/}" th:object="${factura}"
 					method="post">

@@ -12,21 +12,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="facturas_items")
+@Table(name = "facturas_items")
 public class ItemFactura implements Serializable {
 
-	//ATRIBUTOS
+	// ATRIBUTOS
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private Integer cantidad;
-	
-	@ManyToOne(fetch= FetchType.LAZY)
-	@JoinColumn(name="producto_id")
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "producto_id")
 	private Producto producto;
 
-	//SETTERS&GETTERS
+	// SETTERS&GETTERS
 	public Long getId() {
 		return id;
 	}
@@ -42,14 +42,19 @@ public class ItemFactura implements Serializable {
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
 	}
-	
+
 	public Double calcularImporte() {
-		return cantidad.doubleValue()*producto.getPrecio();
+		return cantidad.doubleValue() * producto.getPrecio();
 	}
 
-	/**
-	 * 
-	 */
+	public Producto getProducto() {
+		return producto;
+	}
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+
 	private static final long serialVersionUID = 1L;
 
 }

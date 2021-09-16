@@ -26,5 +26,7 @@ public interface IClienteService {
 	public Producto findProductoById(Long id);
 	
 	public void saveFactura(Factura factura);
+	
+	public Factura findFacturaById(Long id);
 		
 }

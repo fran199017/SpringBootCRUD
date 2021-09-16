@@ -80,4 +80,11 @@ public class ClienteServiceImpl implements IClienteService {
 		facturaDAO.save(factura);	
 	}
 
+	@Override
+	@Transactional(readOnly= true)
+	public Factura findFacturaById(Long id) {
+		// TODO Auto-generated method stub
+		return facturaDAO.findById(id).orElse(null);
+	}
+
 }

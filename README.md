@@ -1,14 +1,7 @@
 # SpringBootCRUD PROYECTO EN PROCESO
-Proyecto para la mejora del desarrollo en Spring Boot
+Proyecto paso a paso NO PROPIO para la mejora del desarrollo en Spring Boot.
+Creacion de clientes, update de clientes, creacion de facturas, lineas de factura, eliminacion....
 
-***CLIENTE***
 
-Insert Cliente
-
-Remove Cliente
-
-Update Cliente
-
-findOne Cliente
 
 
